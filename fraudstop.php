@@ -1,13 +1,11 @@
 <?php 
 
-$service_url = "https://fraudstop.simplecreditcardpayments.com/frequency/$ip";
-
 function get_transaction_count ($ip, $cardhash, $service_timeout = 3000) {
 	// create curl resource 
 	$ch = curl_init(); 
 
 	// setup request
-	curl_setopt($ch, CURLOPT_URL, $service_url); 
+	curl_setopt($ch, CURLOPT_URL, "https://fraudstop.simplecreditcardpayments.com/frequency/$ip"); 
 	curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");                                                                     
 	curl_setopt($ch, CURLOPT_POSTFIELDS, $cardhash);
 	curl_setopt($ch, CURLOPT_CONNECTTIMEOUT_MS, $service_timeout);
@@ -48,7 +46,7 @@ $cardhash_json = json_encode($cardhash);
 $ip_address = "1.2.3.4";
 
 // get transaction count
-$transaction_count = get_transaction_count($ip_address, $cardhash_json)
+$transaction_count = get_transaction_count($ip_address, $cardhash_json);
 
 // print transaction attempts
 print($transaction_count);
